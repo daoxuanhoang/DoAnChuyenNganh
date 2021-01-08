@@ -1,0 +1,57 @@
+@model IEnumerable<XuanHoang.Models.Product>
+    @{ Layout = "_Layout"; ViewBag.Title = "All Product";}
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="breadcrumb">
+                <a class="breadcrumb-item" href="#">Manager</a>
+                <span class="breadcrumb-item active">Product</span>
+            </nav>
+            <h2>All Product</h2>
+    <a href="/product/addproduct" class="btn btn-sm btn-primary">Add Product</a>
+    <a href="/product/getproduct" class="btn btn-sm btn-secondary">Get Product</a>
+     
+    <table class="table table-sm table-striped table-bordered m-2">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>CategoryId</th>
+                <th>Image</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var r in Model)
+            {
+                <tr>
+                    <td>@r.Id</td>
+                    <td>@r.Name</td>
+                    <td>@r.Description</td>
+                    <td>@r.CategoryId</td>
+                    <td>@r.Image</td>
+                    <td>@r.Price</td>
+                    <td>@r.Status</td>
+                    <td>
+                        <a type="submit" href="/product/updateproduct/@r.Id" asp-route-id="@r.Id" style="background-color: green; color: white; border: 2px;">Update</a>
+                            @* <img src="/XuanHoang/icon/update.png"/> *@
+                        @* <form action="UpdateTodoItemPatch" id="@r.Id" method="POST"> 
+                            <img src="/icon/update.png"/>
+                        </form> *@
+                    </td>
+                    <td>
+                        <form action="/product/deleteproduct" method="get">
+                            <input type="hidden" value="@r.Id" name="Id" />
+                            <input type="submit" value="Delete" style="background-color: red; color: white; border: 2px;c"/>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+        </div>
+    </div>
+    

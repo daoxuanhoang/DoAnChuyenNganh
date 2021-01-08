@@ -1,0 +1,34 @@
+@model XuanHoang.Models.TodoItem
+@{ Layout = "_Layout"; ViewBag.Title = "Get TodoItem by Id";}
+ 
+<h2>Get TodoItem by Id <a href="/todoitems/index" class="btn btn-sm btn-primary">Back</a></h2>
+<form method="post">
+    <div class="form-group">
+        <label for="id">Id:</label>
+        <input class="form-control" name="id" />
+    </div>
+    <div class="text-center panel-body">
+        <button type="submit" class="btn btn-sm btn-primary">Get TodoItem</button>
+    </div>
+</form>
+ 
+@if (Model != null)
+{
+    <h2>TodoItem</h2>
+    <table class="table table-sm table-striped table-bordered m-2">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>IsComplete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Id</td>
+                <td>@Model.Name</td>
+                <td>@Model.IsComplete</td>
+            </tr>
+        </tbody>
+    </table>
+}

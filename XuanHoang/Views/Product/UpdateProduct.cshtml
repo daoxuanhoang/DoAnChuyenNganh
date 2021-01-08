@@ -1,0 +1,75 @@
+@model XuanHoang.Models.Product
+@{ Layout = "_Layout"; ViewBag.Title = "Update a Product";}
+ 
+<h2>Update a Product <a href="/product/index" class="btn btn-sm btn-secondary">Back</a></h2>
+<form action="UpdateProduct" method="post">
+    <div class="form-group">
+        <input class="form-control" type="hidden" name="Id" value="@Model.Id" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Name">Name</label>
+        <input class="form-control" name="Name" value="@Model.Name" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Description">Description</label>
+        <input class="form-control" name="Description" value="@Model.Description" />
+    </div>
+    <div class="form-group">
+        <label asp-for="CategoryId">CategoryId</label>
+        <input class="form-control" name="CategoryId" value="@Model.CategoryId" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Image">Image</label>
+        <input class="form-control" name="Image" value="@Model.Image" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Price">Price</label>
+        <input class="form-control" name="Price" value="@Model.Price" />
+    </div>
+    <div class="form-group">
+        <label asp-for="IsComplete">Status</label>
+        <select name="IsComplete" id="" required class="form-control">
+            @if (@Model.Status){
+            <option value="true" selected>Active</option>
+            <option value="false">Inactive</option>
+            }else{
+                <option value="true" >Active</option>
+            <option value="false" selected>Inactive</option>
+            }
+            
+
+        </select>
+    </div>
+    <div class="text-center panel-body">
+        <button type="submit" class="btn btn-sm btn-primary">Update</button>
+    </div>
+</form>
+ 
+@if (ViewBag.Result == "Success")
+{
+    <h2>Product</h2>
+    <table class="table table-sm table-striped table-bordered m-2">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>CategoryId</th>
+                <th>Image</th>
+                <th>Price</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Id</td>
+                <td>@Model.Name</td>
+                <td>@Model.Description</td>
+                <td>@Model.CategoryId</td>
+                <td>@Model.Image</td>
+                <td>@Model.Price</td>
+                <td>@Model.Status</td>
+            </tr>
+        </tbody>
+    </table>
+}

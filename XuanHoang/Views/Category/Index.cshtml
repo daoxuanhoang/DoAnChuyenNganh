@@ -1,0 +1,51 @@
+@model IEnumerable<XuanHoang.Models.Category>
+    @{ Layout = "_Layout"; ViewBag.Title = "All Category";}
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="breadcrumb">
+                <a class="breadcrumb-item" href="#">Manager</a>
+                <span class="breadcrumb-item active">Category</span>
+            </nav>
+            <h2>All Category</h2>
+    <a href="/category/addcategory" class="btn btn-sm btn-primary">Add Category</a>
+    <a href="/category/getcategory" class="btn btn-sm btn-secondary">Get Category</a>
+     
+    <table class="table table-sm table-striped table-bordered m-2">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var r in Model)
+            {
+                <tr>
+                    <td>@r.Id</td>
+                    <td>@r.Name</td>
+                    <td>@r.Description</td>
+                    <td>@r.Status</td>
+                    <td>
+                        <a type="submit" href="/category/updatecategory/@r.Id" asp-route-id="@r.Id" style="background-color: green; color: white; border: 2px;">Update</a>
+                            @* <img src="/XuanHoang/icon/update.png"/> *@
+                        @* <form action="UpdateTodoItemPatch" id="@r.Id" method="POST"> 
+                            <img src="/icon/update.png"/>
+                        </form> *@
+                    </td>
+                    <td>
+                        <form action="/category/deletecategory" method="get">
+                            <input type="hidden" value="@r.Id" name="Id" />
+                            <input type="submit" value="Delete" style="background-color: red; color: white; border: 2px;c"/>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+        </div>
+    </div>
+    
